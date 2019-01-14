@@ -46,3 +46,13 @@ ol, ul {
 .game-info {
   margin-left: 20px;
 }
+
+.active {
+  background: #f00;
+}
+.aaa {
+  background:yellow;
+}
+.bbb {
+  background: green;
+}
