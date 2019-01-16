@@ -76,8 +76,7 @@ class Game extends React.Component {
   render() {
     const history = this.state.history.slice()
     const current = history[this.state.stepNumber]
-    const [winner, steps] = calculateWinner(current.squares) ? calculateWinner(current.squares):[null,null]
-    console.log(steps)
+    const [winner, steps] = calculateWinner(current.squares) ? calculateWinner(current.squares):['',[]]
     const moves = history.map((move, step) => {
       const desc = step ? 'Go to move#' + step : 'Go to game start'
       const route = this.state.goHistory.slice(0, step)
@@ -86,7 +85,13 @@ class Game extends React.Component {
           <button className={step === this.state.stepNumber ? 'active': ''} onClick={() => this.jumpTo(step)}>{desc}</button>
           <span>
             {route.map((a,b) => {
-              return  <span  key={b}><span className={(a[0]+a[1] in [1,2,3,4])? 'aaa':'bbb'}>({a[0]}, {a[1]})</span><span>{b<route.length-1?'=>':''}</span></span>
+              console.log('bbbbbbbbbbbbbbbbbbbbbb')
+              if (!isNaN(steps[0])) {
+                console.log(steps)
+                console.log((a[0]-1)*3+a[1]-1)
+                console.log('--------------')
+              }
+              return  <span  key={b}><span className={ steps.some((num)=>((a[0]-1)*3+(a[1]-1))===num)? 'aaa':'bbb'}>({a[0]}, {a[1]})</span><span>{b<route.length-1?'=>':''}</span></span>
             })}
           </span>
         </li>
